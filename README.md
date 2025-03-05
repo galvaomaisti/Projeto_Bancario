@@ -1,107 +1,41 @@
-#Projeto Banco
-O código implementa um sistema bancário básico com funcionalidades de depósito, saque e extrato em Python.
-1. Classe Banco
-Essa classe gerencia as operações da conta bancária.
+# Sistema Bancário em Python
 
-1.1 Construtor (__init__)
-python
-Copiar
-Editar
-def __init__(self):
-    self.saldo = 0.0
-    self.extrato = []
-    self.limite_saque = 500.0
-    self.saques_diarios = 3
-    self.saques_realizados = 0
-self.saldo: Armazena o saldo da conta.
-self.extrato: Lista para registrar os depósitos e saques.
-self.limite_saque: Define o limite de R$ 500,00 por saque.
-self.saques_diarios: Número máximo de saques diários (3).
-self.saques_realizados: Conta quantos saques já foram feitos no dia.
-1.2 Método depositar(self, valor)
-python
-Copiar
-Editar
-def depositar(self, valor):
-    if valor > 0:
-        self.saldo += valor
-        self.extrato.append(f"Depósito: R$ {valor:.2f}")
-        print(f"Depósito de R$ {valor:.2f} realizado com sucesso!")
-    else:
-        print("Valor de depósito inválido!")
-Verifica se o valor do depósito é maior que 0.
-Soma o valor ao saldo.
-Registra o depósito no extrato.
-Exibe uma mensagem de sucesso.
-1.3 Método sacar(self, valor)
-python
-Copiar
-Editar
-def sacar(self, valor):
-    if self.saques_realizados >= self.saques_diarios:
-        print("Limite de saques diários atingido!")
-    elif valor > self.limite_saque:
-        print(f"O valor máximo para saque é R$ {self.limite_saque:.2f}")
-    elif valor > self.saldo:
-        print("Saldo insuficiente!")
-    elif valor > 0:
-        self.saldo -= valor
-        self.saques_realizados += 1
-        self.extrato.append(f"Saque: R$ {valor:.2f}")
-        print(f"Saque de R$ {valor:.2f} realizado com sucesso!")
-    else:
-        print("Valor de saque inválido!")
-Verifica se o limite de 3 saques diários foi atingido.
-Verifica se o valor do saque ultrapassa o limite de R$ 500,00.
-Verifica se há saldo suficiente.
-Caso tudo esteja correto, desconta o valor do saldo e registra no extrato.
-1.4 Método exibir_extrato(self)
-python
-Copiar
-Editar
-def exibir_extrato(self):
-    print("\nExtrato da conta:")
-    if not self.extrato:
-        print("Não foram realizadas movimentações.")
-    else:
-        for movimento in self.extrato:
-            print(movimento)
-    print(f"Saldo atual: R$ {self.saldo:.2f}")
-Se não houver movimentações, exibe uma mensagem específica.
-Lista todas as transações (depósitos e saques).
-Mostra o saldo final da conta.
-2. Interface de Usuário (Loop Principal)
-python
-Copiar
-Editar
-banco = Banco()
+Este projeto implementa um sistema bancário simples em Python, permitindo operações de **depósito, saque e extrato**.
 
-while True:
-    print("\nBem-vindo ao Banco!")
-    print("1 - Depositar")
-    print("2 - Sacar")
-    print("3 - Extrato")
-    print("4 - Sair")
-    opcao = input("Escolha uma opção: ")
-    
-    if opcao == "1":
-        valor = float(input("Digite o valor para depósito: "))
-        banco.depositar(valor)
-    elif opcao == "2":
-        valor = float(input("Digite o valor para saque: "))
-        banco.sacar(valor)
-    elif opcao == "3":
-        banco.exibir_extrato()
-    elif opcao == "4":
-        print("Obrigado por utilizar o Banco! Até mais.")
-        break
-    else:
-        print("Opção inválida! Tente novamente.")
-Cria uma instância da classe Banco.
-Loop infinito para exibir o menu até o usuário escolher sair.
-Executa a opção escolhida:
-1: Deposita um valor.
-2: Saca um valor.
-3: Exibe o extrato.
-4: Sai do sistema.
+## Funcionalidades
+- **Depósito**: O usuário pode depositar qualquer valor positivo.
+- **Saque**:
+  - Limite de **3 saques diários**.
+  - Valor máximo de **R$ 500,00 por saque**.
+  - O sistema impede saques superiores ao saldo disponível.
+- **Extrato**:
+  - Exibe todos os depósitos e saques realizados.
+  - Mostra o saldo atual da conta.
+  - Caso não haja movimentações, exibe a mensagem: *"Não foram realizadas movimentações."*
+
+## Como Executar
+1. Certifique-se de ter o **Python** instalado em seu computador.
+2. Salve o arquivo do código como `banco.py`.
+3. No terminal ou prompt de comando, execute:
+   ```sh
+   python banco.py
+   ```
+4. Utilize o menu interativo para realizar operações bancárias.
+
+## Exemplo de Uso
+```
+Bem-vindo ao Banco!
+1 - Depositar
+2 - Sacar
+3 - Extrato
+4 - Sair
+Escolha uma opção: 1
+Digite o valor para depósito: 1000
+Depósito de R$ 1000.00 realizado com sucesso!
+```
+
+## Tecnologias Utilizadas
+- Python 3
+
+Este projeto é uma ótima oportunidade para praticar lógica de programação, controle de fluxo e manipulação de dados em Python.
 
