@@ -1,6 +1,5 @@
 Explicação do Código
-O código implementa um sistema bancário básico com funcionalidades de depósito, saque e extrato. Vamos analisar cada parte:
-
+O código implementa um sistema bancário básico com funcionalidades de depósito, saque e extrato. 
 1. Classe Banco
 Essa classe gerencia as operações da conta bancária.
 
